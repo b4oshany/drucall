@@ -5,5 +5,7 @@ core = 7.x
 dependencies[] = jssip
 dependencies[] = jscommunicator
 dependencies[] = arbiterjs
+dependencies[] = jqueryi18nproperties
+dependencies[] = fontawesome
 configure = admin/config/drucall/settings
 

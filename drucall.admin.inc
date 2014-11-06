@@ -33,6 +33,20 @@ function drucall_admin($form, &$form_state) {
     '#description' => t('Whether or not to show a button allowing a video call.'),
   );
 
+  $form['enable_chat'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show chat panel'),
+    '#default_value' => variable_get('enable_chat', true),
+    '#description' => t('Whether or not to show the chat messaging facility.'),
+  );
+
+  $form['enable_dtmf_pad'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show DTMF panel in-call'),
+    '#default_value' => variable_get('enable_dtmf_pad', true),
+    '#description' => t('Whether or not to show a DTMF dialing pad during calls.'),
+  );
+
   $form['display_name'] = array(
     '#type' => 'textfield',
     '#title' => t('Display name for caller'),
@@ -140,6 +154,8 @@ function drucall_admin_submit($form, &$form_state) {
   variable_set('default_destination', $form_state['values']['default_destination']);
   variable_set('enable_audio', $form_state['values']['enable_audio']);
   variable_set('enable_video', $form_state['values']['enable_video']);
+  variable_set('enable_chat', $form_state['values']['enable_chat']);
+  variable_set('enable_dtmf_pad', $form_state['values']['enable_dtmf_pad']);
   variable_set('display_name', $form_state['values']['display_name']);
   variable_set('from_uri', $form_state['values']['from_uri']);
   variable_set('auth_user', $form_state['values']['auth_user']);

@@ -47,9 +47,11 @@ function drucall_theme() {
 
 function drucall_call() {
 
+  global $language;
+
   // We use the `libraries' module to load javascript dependencies:
 
-  foreach ([ "jssip", "jscommunicator", "arbiterjs" ] as $libname) {
+  foreach ([ "jssip", "jscommunicator", "arbiterjs", "jqueryi18nproperties", "fontawesome" ] as $libname) {
     if (!($library = libraries_detect($libname))) {
       $error = "failed to load an essential component";
       $error_msg = "failed to load $libname - please install it (check the DruCall instructions)";
@@ -70,6 +72,8 @@ function drucall_call() {
       'phone_number' => variable_get('default_destination'),
       'enable_audio' => variable_get('enable_audio'),
       'enable_video' => variable_get('enable_video'),
+      'enable_chat' => variable_get('enable_chat'),
+      'enable_dtmf_pad' => variable_get('enable_dtmf_pad'),
       'display_name' => variable_get('display_name'),
       'impi' => variable_get('auth_user'),
       'impu' => variable_get('from_uri'),
@@ -80,6 +84,7 @@ function drucall_call() {
       'turn_server_url' => variable_get('turn_server_url'),
       'turn_username' => variable_get('turn_username'),
       'turn_password' => variable_get('turn_password'),
+      'language_code' => $language->language,
   );
 
   drupal_add_js(
