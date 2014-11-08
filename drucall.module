@@ -49,6 +49,11 @@ function drucall_call() {
 
   global $language;
 
+  // Make sure the necessary jQuery UI components are available on
+  // the page, Drupal loads core jQuery automatically but not jQuery UI
+  drupal_add_library('system', 'ui.draggable');
+  drupal_add_library('system', 'ui.resizable');
+
   // We use the `libraries' module to load javascript dependencies:
 
   foreach ([ "jssip", "jscommunicator", "arbiterjs", "jqueryi18nproperties", "fontawesome" ] as $libname) {
