@@ -79,7 +79,7 @@
 
   i18n : {
     translate: true,     // enables the call to i18n init function from JSCommManager.init()
-    show_menu: true,    // show the language chooser menu
+    show_menu: false,    // show the language chooser menu
     default_lang: dcsettings.language_code    // default language to use
   },
 
