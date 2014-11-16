@@ -16,7 +16,7 @@ function drucall_admin($form, &$form_state) {
     '#default_value' => variable_get('default_destination', 'operator'),
     '#cols' => 40,
     '#rows' => 1,
-    '#description' => t('The default destination that should be dialed when a visitor makes a DruCall call.  Can be the user part of a URI, or a full sip: URI.'),
+    '#description' => t('The default destination that should be dialed when a visitor makes a DruCall call.  Can be the user part of a URI, or a full <b>sip:</b> URI.'),
   );
 
   $form['enable_audio'] = array(
@@ -53,7 +53,7 @@ function drucall_admin($form, &$form_state) {
     '#default_value' => variable_get('display_name', 'DruCall user'),
     '#cols' => 40,
     '#rows' => 1,
-    '#description' => t('The display name to be inserted in the From: header of a call made by a DruCall user.  Future versions of DruCall may detect the logged in user name.'),
+    '#description' => t('The display name to be inserted in the <em>From:</em> header of a call made by a guest user.'),
   );
 
   $form['from_uri'] = array(
@@ -62,7 +62,7 @@ function drucall_admin($form, &$form_state) {
     '#default_value' => variable_get('from_uri', 'sip:user@example.org'),
     '#cols' => 40,
     '#rows' => 1,
-    '#description' => t('The SIP URI, including the sip: scheme prefix, for the DruCall users'),
+    '#description' => t('The SIP URI, including the <b>sip:</b> scheme prefix, for a guest user.'),
   );
 
   $form['auth_user'] = array(
@@ -71,7 +71,7 @@ function drucall_admin($form, &$form_state) {
     '#default_value' => variable_get('auth_user', 'username'),
     '#cols' => 40,
     '#rows' => 1,
-    '#description' => t('The username for authenticating to the SIP proxy.'),
+    '#description' => t('The guest account username for authenticating to the SIP proxy.'),
   );
 
   $form['auth_password'] = array(
@@ -80,7 +80,7 @@ function drucall_admin($form, &$form_state) {
     '#default_value' => variable_get('auth_password', ''),
     '#cols' => 40,
     '#rows' => 1,
-    '#description' => t('The password for authenticating to the SIP proxy.'),
+    '#description' => t('The guest account password for authenticating to the SIP proxy.  <b>WARNING: not intended as a security mechanism, the password will be visible in the client-side JavaScript</b>.'),
   );
 
   $form['auth_realm'] = array(
@@ -89,7 +89,7 @@ function drucall_admin($form, &$form_state) {
     '#default_value' => variable_get('auth_realm', 'realm'),
     '#cols' => 40,
     '#rows' => 1,
-    '#description' => t('The realm for authenticating to the SIP proxy.'),
+    '#description' => t('The realm for authenticating the guest account to the SIP proxy.'),
   );
 
   $form['websocket_server_url'] = array(
@@ -98,7 +98,7 @@ function drucall_admin($form, &$form_state) {
     '#default_value' => variable_get('websocket_server_url', 'ws://sip-proxy.example.org:80'),
     '#cols' => 40,
     '#rows' => 1,
-    '#description' => t('The WebSocket URL of the SIP proxy, typically with the ws: or wss: prefix.'),
+    '#description' => t('The WebSocket URL of the SIP proxy, typically with the <b>ws:</b> or <b>wss:</b> prefix.'),
   );
 
   $form['sip_outboundproxy_url'] = array(
@@ -107,7 +107,7 @@ function drucall_admin($form, &$form_state) {
     '#default_value' => variable_get('sip_outboundproxy_url', 'tcp://sip-proxy.example.org:5060'),
     '#cols' => 40,
     '#rows' => 1,
-    '#description' => t('The Outbound Proxy URL.'),
+    '#description' => t('SIP Outbound Proxy URL.  Only specify this if required.'),
   );
 
   $form['turn_server_url'] = array(
@@ -116,7 +116,7 @@ function drucall_admin($form, &$form_state) {
     '#default_value' => variable_get('turn_server_url', 'turn:turn-server.example.org'),
     '#cols' => 40,
     '#rows' => 1,
-    '#description' => t('The URL of the TURN server, for example, turn:turn-server.example.org.'),
+    '#description' => t('The URL of the TURN server, for example, <em>turn:turn-server.example.org</em>'),
   );
 
   $form['turn_username'] = array(
@@ -134,7 +134,7 @@ function drucall_admin($form, &$form_state) {
     '#default_value' => variable_get('turn_password', ''),
     '#cols' => 40,
     '#rows' => 1,
-    '#description' => t('The password (long-term credential) for authenticating to the TURN server.'),
+    '#description' => t('The password (long-term credential) for authenticating to the TURN server.  <b>WARNING: not intended as a security mechanism, the password will be visible in the client-side JavaScript</b>.'),
   );
 
   $form['submit'] = array(
