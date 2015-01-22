@@ -47,6 +47,49 @@ function drucall_admin($form, &$form_state) {
     '#description' => t('Whether or not to show a DTMF dialing pad during calls.'),
   );
 
+  $form['sip_domain'] = array(
+    '#type' => 'textfield',
+    '#title' => t('SIP domain'),
+    '#default_value' => variable_get('sip_domain', ''),
+    '#cols' => 40,
+    '#rows' => 1,
+    '#description' => t('The SIP domain to be used to construct the <em>From:</em> header for calls made by logged-in Drupal users.'),
+  );
+
+  $form['ws_cookie_secret'] = array(
+    '#type' => 'textfield',
+    '#title' => t('WebSocket Cookie Shared Secret'),
+    '#default_value' => variable_get('ws_cookie_secret', ''),
+    '#cols' => 40,
+    '#rows' => 1,
+    '#description' => t('The shared secret used to authenticate WebSocket cookies.  Must match the <b>WSCookieAuthSharedSecret</b> in <a href="http://www.resiprocate.org/SIP_Over_WebSocket_Cookies">the repro SIP proxy</a>.'),
+  );
+
+  $form['ws_cookie_domain'] = array(
+    '#type' => 'textfield',
+    '#title' => t('WebSocket Cookie Domain'),
+    '#default_value' => variable_get('ws_cookie_domain', ''),
+    '#cols' => 40,
+    '#rows' => 1,
+    '#description' => t('The domain to set in cookies if using <a href="http://www.resiprocate.org/SIP_Over_WebSocket_Cookies">SIP over WebSocket cookie authentication</a>.  This may just be part of the domain and it must match both the Drupal web server domain and the WebSocket URL (below).  E.g. if the web site is <em>www.example.org</em> and WebSocket server is <em>wss://sip-ws.example.org</em> then you must put <em>example.org</em> in this field.'),
+  );
+
+  $form['ws_cookie_timeout'] = array(
+    '#type' => 'textfield',
+    '#title' => t('WebSocket Cookie Timeout'),
+    '#default_value' => variable_get('ws_cookie_timeout', '900'),
+    '#cols' => 40,
+    '#rows' => 1,
+    '#description' => t('Specify the duration, in seconds, that the authentication code is valid.  This also sets the expiration time of the cookies.'),
+  );
+
+  $form['ws_cookies_in_url'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Send WebSocket authentication as URL parameters'),
+    '#default_value' => variable_get('ws_cookies_in_url', true),
+    '#description' => t('If the WebSocket server doesn\'t have the same domain name or domain suffix as the Drupal web site, the browser will not send the cookies.  Select this option to append the cookie values to the WebSocket URL so authentication will work across domains.'),
+  );
+
   $form['display_name'] = array(
     '#type' => 'textfield',
     '#title' => t('Display name for caller'),
@@ -156,6 +199,11 @@ function drucall_admin_submit($form, &$form_state) {
   variable_set('enable_video', $form_state['values']['enable_video']);
   variable_set('enable_chat', $form_state['values']['enable_chat']);
   variable_set('enable_dtmf_pad', $form_state['values']['enable_dtmf_pad']);
+  variable_set('sip_domain', $form_state['values']['sip_domain']);
+  variable_set('ws_cookie_secret', $form_state['values']['ws_cookie_secret']);
+  variable_set('ws_cookie_domain', $form_state['values']['ws_cookie_domain']);
+  variable_set('ws_cookie_timeout', $form_state['values']['ws_cookie_timeout']);
+  variable_set('ws_cookies_in_url', $form_state['values']['ws_cookies_in_url']);
   variable_set('display_name', $form_state['values']['display_name']);
   variable_set('from_uri', $form_state['values']['from_uri']);
   variable_set('auth_user', $form_state['values']['auth_user']);

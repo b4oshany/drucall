@@ -39,7 +39,7 @@
 
   // User SIP registration
   registration : {
-    on_startup: false,          // Register when websocket link starts?
+    on_startup: dcsettings.sip_register,  // Register when websocket link starts?
     expiry: 3600,              // Registration expiry (seconds)
     user_control: false,        // Show button for user to (de)register
     server: null,              // Registration server
@@ -84,7 +84,7 @@
   },
 
   extra_headers : [
-    // 'X-WS-Session-Extra: some_token=value'
+    'X-WS-Session-Extra: ' + dcsettings.extra_header_value
   ]
 
 };
