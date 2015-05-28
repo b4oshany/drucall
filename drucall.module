@@ -93,6 +93,9 @@ function drucall_call() {
     $caller_password = variable_get('auth_password');
   }
 
+  $extra_value = '';   // TODO - a shopping cart ID,
+                       // order ID, customer ID or some other value
+                         
   $ws_cookie_secret = variable_get('ws_cookie_secret');
   $websocket_server_url = variable_get('websocket_server_url');
   $ws_cookies_in_url = variable_get('ws_cookies_in_url');
@@ -109,8 +112,6 @@ function drucall_call() {
     $time_limit = REQUEST_TIME + $ws_cookie_timeout;  // seconds
     $cookie_value = '1:' . REQUEST_TIME . ':' . $time_limit . ':' . $sip_from . ':' . $sip_to;
     $cookie_value_encoded = urlencode($cookie_value);
-    $extra_value = '';   // TODO - a shopping cart ID,
-                         // order ID, customer ID or some other value
     // Example sending the Drupal session ID through SIP
     if(!empty($user->ssid))
       $extra_value = 'drupal:ssid:' . $user->ssid;
